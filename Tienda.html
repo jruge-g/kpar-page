@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda - KPAR</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="CSS/estilo.css">
+  <style>
+  	.card-img-top {
+  	height: 200px;       
+  	object-fit: contain; 
+   	padding: 10px;       
+}
+    .card {
+      background-color: #1e1e1e;
+      border: none;
+      border-radius: 10px;
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: scale(1.05);
+    }
+    .carrito {
+      background: #000;
+      color: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    .carrito h5 {
+      border-bottom: 1px solid #444;
+      padding-bottom: 8px;
+    }
+    .carrito li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #333;
+      padding-bottom: 5px;
+    }
+    .btn-eliminar {
+      background: red;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      padding: 2px 8px;
+      cursor: pointer;
+      font-size: 0.9em;
+    }
+    .btn-eliminar:hover {
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar-logo">
+  <img src="./Images/logo-kpar.png" alt="KPAR Logo">
+  <a class="navbar-brand fw-bold" href="#">KPAR</a>
+</div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+              data-bs-target="#navbarNav" aria-controls="navbarNav" 
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="Galeria.html">Galería</a></li>
+          <li class="nav-item"><a class="nav-link" href="Formularios.html">Formularios</a></li>
+          <li class="nav-item"><a class="nav-link" href="Djs.html">DJs</a></li>
+          <li class="nav-item"><a class="nav-link" href="Tienda.html">Tienda</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<header class="text-center p-5 bg-white text-black">
+    <h1>🛒 Tienda de KPAR</h1>
+  </header>
+  
+  <div class="container my-5">
+    <h2 class="text-center mb-4">Productos</h2>
+    <div class="row">
+      
+      <!-- Camiseta -->
+      <div class="col-md-3 col-sm-6 mb-3">
+        <div class="card text-white">
+          <img src="Images/camisa-kpar.jpg" class="card-img-top" alt="Camiseta KPAR">
+          <div class="card-body text-center">
+            <h5 class="card-title">Camiseta KPAR</h5>
+            <p class="card-text">$50.000</p>
+            <button class="btn btn-success" onclick="agregarCarrito('Camiseta KPAR', 50000)">Agregar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gorra -->
+      <div class="col-md-3 col-sm-6 mb-3">
+        <div class="card text-white">
+          <img src="Images/gorras-kpar.jpg" class="card-img-top" alt="Gorra KPAR">
+          <div class="card-body text-center">
+            <h5 class="card-title">Gorra KPAR</h5>
+            <p class="card-text">$25.000</p>
+            <button class="btn btn-success" onclick="agregarCarrito('Gorra KPAR', 25000)">Agregar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pañoleta -->
+      <div class="col-md-3 col-sm-6 mb-3">
+        <div class="card text-white">
+          <img src="Images/pañoleta-kpar.jpg" class="card-img-top" alt="Pañoleta KPAR">
+          <div class="card-body text-center">
+            <h5 class="card-title">Pañoleta KPAR</h5>
+            <p class="card-text">$15.000</p>
+            <button class="btn btn-success" onclick="agregarCarrito('Pañoleta KPAR', 15000)">Agregar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stickers -->
+      <div class="col-md-3 col-sm-6 mb-3">
+        <div class="card text-white">
+          <img src="Images\sticker-kpar.JPG" class="card-img-top" alt="Sticker KPAR">
+          <div class="card-body text-center">
+            <h5 class="card-title">Stickers</h5>
+            <p class="card-text">$4.000</p>
+            <button class="btn btn-success" onclick="agregarCarrito('Sticker KPAR', 4000)">Agregar</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Carrito -->
+    <div class="carrito mt-5">
+      <h5>🛍️ Carrito</h5>
+      <ul id="listaCarrito" class="list-unstyled"></ul>
+      <p><strong>Total:</strong> $<span id="total">0</span></p>
+    </div>
+  </div>
+
+  <footer class="bg-dark text-white text-center py-3">
+    <p class="mb-0">&copy; 2025 KPAR - Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    let carrito = [];
+    let total = 0;
+
+    function agregarCarrito(nombre, precio) {
+      carrito.push({nombre, precio});
+      total += precio;
+      actualizarCarrito();
+    }
+
+    function eliminarProducto(index) {
+      total -= carrito[index].precio;
+      carrito.splice(index, 1);
+      actualizarCarrito();
+    }
+
+    function actualizarCarrito() {
+      let lista = document.getElementById("listaCarrito");
+      lista.innerHTML = "";
+      carrito.forEach((item, i) => {
+        let li = document.createElement("li");
+        li.innerHTML = `${item.nombre} - $${item.precio.toLocaleString()} 
+          <button class="btn-eliminar" onclick="eliminarProducto(${i})">X</button>`;
+        lista.appendChild(li);
+      });
+      document.getElementById("total").textContent = total.toLocaleString();
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
