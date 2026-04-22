@@ -68,7 +68,7 @@
 </div>
 
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark main-nav">
     <div class="container-fluid">
       
 
@@ -83,13 +83,13 @@
           <li class="nav-item"><a class="nav-link" href="Galeria.html">Galería</a></li>
           <li class="nav-item"><a class="nav-link" href="Formularios.html">Formularios</a></li>
           <li class="nav-item"><a class="nav-link" href="Djs.html">DJs</a></li>
-          <li class="nav-item"><a class="nav-link" href="Tienda.html">Tienda</a></li>
+          <li class="nav-item"><a class="nav-link active" href="Tienda.html">Tienda</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-<header class="text-center p-5 bg-white text-black">
+<header class="text-center p-5">
     <h1>🛒 Tienda de KPAR</h1>
   </header>
   
@@ -188,6 +188,19 @@
     }
   </script>
 
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const navbar = document.querySelector(".main-nav");
+      if (!navbar) return;
+
+      const updateNavbarState = () => {
+        navbar.classList.toggle("navbar-scrolled", window.scrollY > 30);
+      };
+
+      updateNavbarState();
+      window.addEventListener("scroll", updateNavbarState, { passive: true });
+    });
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
